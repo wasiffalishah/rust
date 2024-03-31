@@ -25,6 +25,6 @@ fn main() {
 
 impl Coin {
     fn print_details(&self) {
-        println!("{:?}", self); // Implementation of truct to add function to it
+        println!("{:?}", self); // Implementation of struct to add function to it
     }
 }
