@@ -19,6 +19,12 @@ fn main() {
         blockchain: String::from("SOLANA"),
         is_live: true,
     };
+    
+    coin1.print_details();
+}
 
-    println!("{:?}", coin1);
+impl Coin {
+    fn print_details(&self) {
+        println!("{:?}", self); // Implementation of truct to add function to it
+    }
 }
