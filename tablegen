@@ -1,0 +1,50 @@
+use std::io::stdin;
+
+fn main(){
+    let mut in_a: String = String::new();
+    println!("what numbers table you want: ");
+    stdin().read_line(&mut in_a).expect("error in a ");
+    let a: i32 = in_a.trim().parse().expect("err in conversion");
+
+    let mut in_x: String = String::new();
+    println!("when you wan the table to end: ");
+    stdin().read_line(&mut in_x).expect("error in x ");
+    let x: i32 = in_x.trim().parse().expect("err in conversion");
+    
+    printtable(a,x);
+}
+
+fn printtable(a : i32, x:i32){
+    for i in 1..x+1{
+        println!("{} x {} = {}", a, i, a*i); 
+    } 
+}
+
+
+//custom range
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    println!("Enter the number for the multiplication table: ");
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    let num: i32 = input.trim().parse().expect("Failed to parse input");
+
+    input.clear();
+    println!("Enter the start of the range: ");
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    let start: i32 = input.trim().parse().expect("Failed to parse input");
+
+    input.clear();
+    println!("Enter the end of the range: ");
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    let end: i32 = input.trim().parse().expect("Failed to parse input");
+
+    print_multiplication_table(num, start, end);
+}
+
+fn print_multiplication_table(num: i32, start: i32, end: i32) {
+    for i in start..=end {
+        println!("{} x {} = {}", num, i, num * i);
+    }
+}
