@@ -1,0 +1,144 @@
+q1) Write a Rust program that takes a floating-point number as input, converts it to an integer, and then outputs the integer value.
+use std::io;
+
+fn main() {
+    let mut get_float = String::new();
+    
+    // Read the input from the user
+    io::stdin().read_line(&mut get_float)
+        .expect("Failed to read line");
+    
+    // Parse the input string to a floating-point number (f64)
+    let float_value: f64 = get_float.trim().parse()
+        .expect("Please enter a valid number");
+    
+    // Convert the floating-point number to an integer (i32)
+    let integer_value: i32 = float_value as i32;
+    
+    // Print the results
+    println!("Value of float {} in int is {}", float_value, integer_value); 
+}
+
+q2) Create a function that accepts a tuple containing a String and an i32. The function should print the string followed by the integer.
+
+myans) fn main (){
+    acctuple(("Wasif".to_string(), 34));
+}
+
+fn acctuple( a : (String, i32)){
+    println!("String: {}",a.0);
+    println!("Integer: {}",a.1);
+}
+
+
+gpt ans) fn main (){
+    acctuple(("Wasif".to_string(), 34));
+}
+
+fn acctuple( a : (String, i32)){
+    println!("String: {}",a.0);
+    println!("Integer: {}",a.1);
+}
+
+q3) Write a function is_even that takes an integer as input and returns true if the number is even and false if it's odd. Use this function in your main program to check whether a user-provided number is even or odd.
+
+my ans) fn main (){
+   is_even(146);
+}
+
+fn is_even(a : i32){
+    let is_evenn: bool;
+    if a % 2 == 0 {
+        is_evenn = true;
+        println!("{a} is even {is_evenn}");
+    }
+    else{
+        is_evenn = false;
+        println!("{a} is odd {is_evenn}");
+    }
+}
+
+gpt ans) fn main() {
+    let number = 167;
+    let result = is_even(number);
+
+    if result {
+        println!("{number} is even");
+    } else {
+        println!("{number} is odd");
+    }
+}
+
+fn is_even(a: i32) -> bool {
+    a % 2 == 0
+}
+
+
+q4) Define a constant for the value of π (3.14159) and use it in a function that calculates the area of a circle given its radius.
+
+myans) fn main(){
+
+    calarea(3.6);
+}
+
+const PI : f64 = 3.142;
+
+fn calarea(radius :  f64){
+    let area : f64 = PI * (radius*radius);
+    println!("area of circle with {radius} is {area}");
+}
+
+q5) Write a function that takes ownership of a String, appends some text to it, and then returns the modified String. Show how this function changes the ownership of the string variable in the main program.
+
+myans) fn main(){
+    let ogstring : String = String::from("wasif");
+    getstring(ogstring);
+   // println!("{}", ogstring); // This line will cause a compile-time error because ownership of `ogstring` is moved to the `getstring` function.
+// After the ownership is transferred, `ogstring` is no longer valid in the `main` function.
+// Therefore, attempting to use `ogstring` after the function call will result in a compilation error.
+}
+
+fn getstring(mut mystring : String){
+    mystring.push_str(" is good");
+    println!("mysting is {}", mystring);
+}
+
+q6) Modify the previous program to allow the function to borrow the String instead of taking ownership. The function should still append text to the String but should not take ownership.
+
+myans) fn main(){
+    let mut ogstring : String = String::from("wasif");
+    getstring(&mut ogstring);
+}
+
+fn getstring(mystring :&mut String){
+    mystring.push_str(" is good");
+    println!("mystring is {}", mystring);
+}
+
+Summary:
+Ownership and Mutability:
+
+ogstring is mutable, allowing modification.
+&mut ogstring passes a mutable reference, enabling getstring to modify the original string.
+Function Behavior:
+
+getstring modifies the string by appending " is good" and prints the modified string.
+The original string ogstring in main also reflects this modification, demonstrating Rust's mutable references.
+
+q7) Write a function that swaps the values of two integers using references. In your main function, demonstrate that the swap has occurred by printing the values before and after the swap.
+
+ans) fn main() {
+    let mut a = 5;
+    let mut b = 7;
+    swap(&mut a, &mut b);
+    println!("After swap in main: a = {} and b = {}", a, b);
+}
+
+fn swap(a: &mut i32, b: &mut i32) {
+    println!("Before swap: a = {} and b = {}", a, b);
+
+    let temp = std::mem::replace(a, *b);
+    *b = temp;
+
+    println!("After swap: a = {} and b = {}", a, b);
+}
